@@ -23,6 +23,23 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public void setFinish(int finishIndex, boolean boolfinish) {
+        finish[finishIndex] = boolfinish;
+    }
+
+    @Override
+    public void setColor( PawnColor color) {
+        this.color=color;
+
+    }
+
+    @Override
+    public void setisThroable(boolean boolThroable) {
+        this.throwable=boolThroable;
+
+    }
+
+    @Override
     public Pawn getPawns(){
         return pawns;
     }
