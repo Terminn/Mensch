@@ -8,9 +8,9 @@ import game.model.PawnColor;
 import game.model.Player;
 
 public interface Game {
-    public static final int BOARD_LENGTH = 41;
-    public void saveField(String filename) throws FileNotFoundException;
-    public void loadField(String filename) throws FileNotFoundException;
-    void eat(Player p, int index);
-    Player getPlayer(PawnColor color);
+    int BOARD_LENGTH = 41;
+    void saveField(String filename) throws FileNotFoundException;
+    void loadField(String filename) throws FileNotFoundException;
+    void eat(int playerIndex, int pawnIndex) throws IllegalArgumentException;
+    int getIndexComparedToOtherPlayer(int playerIndex, int pawnIndex) throws IllegalArgumentException;
 }

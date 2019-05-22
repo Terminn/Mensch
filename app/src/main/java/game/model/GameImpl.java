@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameImpl implements Game {
-    private List<Player> players;
-
-    public GameImpl(int numberPlayers){
-        players = new ArrayList<>(numberPlayers);
-    }
+    private List<Player> players = new ArrayList<>(2);
 
     @Override
     public void saveField(String filename) throws FileNotFoundException {
@@ -22,37 +18,34 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public void eat(Player p, int index) {
-        boolean res=false;
-        PawnColor pawnColor = null;
-        List<Player> playerList = players;
-        playerList.remove(p);
-        int cmt=0,cmt2=0;
-        while(!res && cmt<4){
-            while(!res && cmt2<playerList.size()){
-                if(p.getPawns().getIndexAtIndex(index)==playerList.get(cmt2).getPawns().getIndexAtIndex(cmt)){
-                    res = true;
-                    pawnColor = playerList.get(cmt2).getColor();
-                }
-                cmt2++;
-            }
-            cmt++;
+    public void eat(int playerIndex, int pawnIndex) throws IllegalArgumentException{
+        if((playerIndex>1 || playerIndex<0) || (pawnIndex>4 || pawnIndex<0)){
+            throw new IllegalArgumentException();
         }
-        getPlayer(pawnColor).getPawns().getsEaten(cmt-1);
+        boolean res = false;
+        int cmt=0;
+        while(!res && cmt<4){
+            if(players.get(playerIndex).getPawns().getIndexAtIndex(pawnIndex) == getIndexComparedToOtherPlayer(1-playerIndex,cmt)){
+                res = true;
+            } else {
+                cmt++;
+            }
+        }
+        players.get(1-playerIndex).getPawns().getsEaten(cmt);
     }
 
     @Override
-    public Player getPlayer(PawnColor color) {
-        boolean res = true;
-        Player p = null;
-        int cmt=0;
-        while(res && cmt<players.size()){
-            if(players.get(cmt).getColor()==color){
-                res = false;
-                p = players.get(cmt);
+    public int getIndexComparedToOtherPlayer(int playerIndex, int pawnIndex) throws IllegalArgumentException {
+        int newPawnIndex;
+        if((playerIndex>1 || playerIndex<0) || (pawnIndex>4 || pawnIndex<0)) {
+            if (players.get(playerIndex).getPawns().getIndexAtIndex(pawnIndex) + 20 > (BOARD_LENGTH-1)) {
+                newPawnIndex = players.get(playerIndex).getPawns().getIndexAtIndex(pawnIndex) + 20 - (BOARD_LENGTH-1);
+            } else {
+                newPawnIndex = players.get(playerIndex).getPawns().getIndexAtIndex(pawnIndex) + 20;
             }
-            cmt++;
+        } else {
+            throw new IllegalArgumentException();
         }
-        return p;
+        return newPawnIndex;
     }
 }
