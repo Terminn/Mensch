@@ -31,6 +31,12 @@ public class PawnImpl implements Pawn {
     }
 
     @Override
+    public void setIndexAtIndex(int pawnIndex, int index) {
+        indexes[pawnIndex]= index;
+
+    }
+
+    @Override
     public boolean canMoveSpecificPawn(int amount, int index){
         boolean res = true;
         if(amount<6 && indexes[index]==0) {
