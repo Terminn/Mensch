@@ -5,7 +5,7 @@ import java.util.List;
 
 import game.gameExceptions.PawnCannotMoveException;
 
-class PlayerImpl implements Player {
+public class PlayerImpl implements Player {
     private boolean[] finish = new boolean[4];
     private PawnColor color;
     private Pawn pawns;

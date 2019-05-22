@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-class GameImpl implements Game {
+public class GameImpl implements Game {
     private List<Player> players;
 
     public GameImpl(int numberPlayers){

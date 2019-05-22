@@ -2,7 +2,7 @@ package game.model;
 
 import game.gameExceptions.PawnCannotMoveException;
 
-class PawnImpl implements Pawn {
+public class PawnImpl implements Pawn {
     private PawnColor color;
     private int[] indexes = new int[4];
 
