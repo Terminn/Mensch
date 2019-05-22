@@ -9,5 +9,7 @@ public interface Pawn {
     public boolean[] canMove(int amount);
     void getsEaten(int index);
     void movePawn(int amount, int index);
+    void setIndexAtIndex(int indexes, int index);
 
 }
+
