@@ -9,6 +9,7 @@ public interface Player {
     public PawnColor getColor();
     Pawn getPawns();
     public int throwDice();
-    public List<Integer> choosePawn() throws PawnCannotMoveException;
+    public List<Integer> choosePawn(int dice) throws IllegalArgumentException;
+    boolean isThrowable();
 
 }

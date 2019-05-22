@@ -26,7 +26,7 @@ public class PawnImpl implements Pawn {
     }
 
     @Override
-    public void movePawn(int amount, int index) throws PawnCannotMoveException {
+    public void movePawn(int amount, int index){
         indexes[index] += amount;
     }
 
@@ -43,6 +43,7 @@ public class PawnImpl implements Pawn {
                 if(indexes[index]+amount == indexes[cmt]) {
                     res = false;
                 }
+                cmt++;
             }
         }
         return res;

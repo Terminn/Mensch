@@ -10,15 +10,14 @@ public class PlayerImpl implements Player {
     private PawnColor color;
     private Pawn pawns;
     private boolean throwable;
-    private int dice;
 
     public PlayerImpl(PawnColor color) {
         this.color = color;
         pawns = new PawnImpl(color);
         throwable = false;
-        dice = 0;
     }
 
+    @Override
     public boolean isThrowable() {
         return throwable;
     }
@@ -44,26 +43,21 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public List<Integer> choosePawn() throws PawnCannotMoveException {
-        dice = throwDice();
-        boolean[] canMove = pawns.canMove(dice);
+    public List<Integer> choosePawn(int dice) throws IllegalArgumentException {
         List<Integer> list = new ArrayList<>();
-        if(canMove.equals(new boolean[4])){
-            throw new PawnCannotMoveException();
-        } else {
-            for(int i=0;i<4;i++){
-                if(canMove[i]){
-                    list.add(i);
+        if(dice <= 6 && dice >= 1) {
+            boolean[] canMove = pawns.canMove(dice);
+            if(!canMove.equals(new boolean[4])){
+                for(int i=0;i<4;i++){
+                    if(canMove[i]){
+                        list.add(i);
+                    }
                 }
             }
+        } else {
+            throw new IllegalArgumentException();
         }
-        return list;
-    }
 
-    public static void main(String[] args) {
-       Player p = new PlayerImpl(PawnColor.Red);
-       for(boolean b : p.getFinish()) {
-           System.out.println(b);
-       }
+        return list;
     }
 }

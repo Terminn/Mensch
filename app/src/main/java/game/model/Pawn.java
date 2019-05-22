@@ -8,6 +8,6 @@ public interface Pawn {
     public boolean canMoveSpecificPawn(int amount, int index);
     public boolean[] canMove(int amount);
     void getsEaten(int index);
-    void movePawn(int amount, int index) throws PawnCannotMoveException;
+    void movePawn(int amount, int index);
 
 }
