@@ -40,10 +40,25 @@ public class PawnImplTest {
     }
 
     @Test
-    public void canMoveSpecificPawn() {
+    public void canMoveSpecificPawn1() {
+        assertEquals(false,pawn.canMoveSpecificPawn(1,0));
+    }
+    @Test
+    public void canMoveSpecificPawn6() {
+        assertEquals(true,pawn.canMoveSpecificPawn(6,0));
     }
 
     @Test
-    public void canMove() {
+    public void canMove1() {
+        for(int i=0;i<4;i++){
+            assertEquals(false,pawn.canMoveSpecificPawn(1,i));
+        }
+    }
+
+    @Test
+    public void canMove6() {
+        for(int i=0;i<4;i++){
+            assertEquals(true,pawn.canMoveSpecificPawn(6,i));
+        }
     }
 }
